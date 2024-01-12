@@ -20,7 +20,7 @@ This is a simple tax calculator application that helps users estimate their inco
 1. Clone the repository to your local machine.
 
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/MfidiV/Tax_Calculator.git
     ```
 
 2. Open the project in your Java IDE or navigate to the project directory in the terminal.
