@@ -13,7 +13,7 @@ public class Tax_Calculator {
 
         System.out.print("Enter year: ");
         int taxYear = scanner.nextInt();
-        
+
         double tax = calculateIncomeTax(taxableIncome, age, taxYear);
 
         System.out.println("Income Tax for the year " + taxYear + ": R" + tax);
@@ -42,17 +42,48 @@ public class Tax_Calculator {
             } else if (taxableIncome <= 1_656_600) {
                 total_tax = 229_089 + 0.41 * (taxableIncome - 782_200);
             } else {
-                total_tax = 587_593 + 0.44 * (taxableIncome - 1_656_600);
+                total_tax = 587_593 + 0.45 * (taxableIncome - 1_656_600);
             }
         }else if (taxYear == 2023){
+            if (taxableIncome > 0 && taxableIncome <= 226_000) {
+                total_tax = taxableIncome * 0.18;
+            } else if (taxableIncome <= 353_100) {
+                total_tax = 40_680 + 0.26 * (taxableIncome - 226_000);
+            } else if (taxableIncome <= 488_700) {
+                total_tax = 73_726 + 0.31 * (taxableIncome - 353_100);
+            } else if (taxableIncome <= 641_400) {
+                total_tax = 115_762 + 0.36 * (taxableIncome - 488_700);
+            } else if (taxableIncome <= 817_600) {
+                total_tax = 170_734 + 0.39 * (taxableIncome - 641_400);
+            } else if (taxableIncome <= 1_731_600) {
+                total_tax = 239_452 + 0.41 * (taxableIncome - 817_600);
+            } else {
+                total_tax = 614_192 + 0.45 * (taxableIncome - 1_731_600);
+            }
+        }else if(taxYear == 2024){
+            if (taxableIncome > 0 && taxableIncome <= 237_100) {
+                total_tax = taxableIncome * 0.18;
+            } else if (taxableIncome <= 370_500) {
+                total_tax = 42_678 + 0.26 * (taxableIncome - 237_100);
+            } else if (taxableIncome <= 512_800) {
+                total_tax = 77_362 + 0.31 * (taxableIncome - 370_500);
+            } else if (taxableIncome <= 673_000) {
+                total_tax = 121_475 + 0.36 * (taxableIncome - 512_800);
+            } else if (taxableIncome <= 857_900) {
+                total_tax = 179_147 + 0.39 * (taxableIncome - 673_000);
+            } else if (taxableIncome <= 1_817_000) {
+                total_tax = 251_258 + 0.41 * (taxableIncome - 857_900);
+            } else {
+                total_tax = 644_489 + 0.45 * (taxableIncome - 1_817_000);
+            }
 
         }
 
         // After getting the tax, we subtract the rebate
-        total_tax -= rebate;
+        return total_tax -= rebate;
 
         // Ensure the final tax is non-negative
-        return Math.max(0, total_tax);
+        // return Math.max(0, total_tax);
     }
 
 
