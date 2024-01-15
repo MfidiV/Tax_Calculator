@@ -51,7 +51,7 @@ public class TaxCalculatorGUI {
         mainPanel.setBackground(new Color(255, 255, 255));
 
         JLabel unitLabel = new JLabel("Tax calculator");
-        Font labelFont = new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30);
+        Font labelFont = new Font("Times New Roman", Font.BOLD | Font.BOLD, 35);
         unitLabel.setFont(labelFont);
         unitLabel.setHorizontalAlignment(JLabel.CENTER);
         mainPanel.add(unitLabel, BorderLayout.NORTH);
