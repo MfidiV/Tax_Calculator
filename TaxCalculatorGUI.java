@@ -25,23 +25,27 @@ public class TaxCalculatorGUI {
         taxableIncomeField = new JTextField();
         ageField = new JTextField();
         resultLabel = new JLabel("Result:");
-        resultLabel.setFont(new Font("Arial", Font.BOLD, 16));
-
+    
+        // Increase the font size for labels
+        Font largerFont = new Font("Arial", Font.PLAIN, 20);
+        
+        resultLabel.setFont(new Font("Arial", Font.BOLD, 18)); // Font for Result label
+    
         calcButton = new JButton("Calculate Tax");
         calcButton.addActionListener(e -> performCalculations());
-
-        Font largerFont = new Font("Arial", Font.PLAIN, );
+    
         taxYearBox.setFont(largerFont);
         taxYearBox.setPreferredSize(new Dimension(100, taxYearBox.getPreferredSize().height));
-
+    
         taxableIncomeField.setFont(largerFont);
         taxableIncomeField.setPreferredSize(new Dimension(100, taxableIncomeField.getPreferredSize().height));
-
+    
         ageField.setFont(largerFont);
         ageField.setPreferredSize(new Dimension(50, ageField.getPreferredSize().height));
-
+    
         calcButton.setFont(new Font("Arial", Font.BOLD, 14));
     }
+    
 
     private void addComponents() {
         JPanel mainPanel = new JPanel();
@@ -73,38 +77,43 @@ public class TaxCalculatorGUI {
         };
         roundedPanel.setLayout(new GridBagLayout());
         roundedPanel.setBackground(new Color(128, 128, 255));
-
+    
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
-
-        addLabelAndComponent("Tax year:", taxYearBox, gbc, roundedPanel, GridBagConstraints.LINE_END, GridBagConstraints.LINE_START);
-        addLabelAndComponent("Taxable Income:", taxableIncomeField, gbc, roundedPanel, GridBagConstraints.LINE_END, GridBagConstraints.LINE_START);
-        addLabelAndComponent("Age:", ageField, gbc, roundedPanel, GridBagConstraints.LINE_END, GridBagConstraints.LINE_START);
-
+    
+        addLabelAndComponent("Tax year:", taxYearBox, gbc, roundedPanel, GridBagConstraints.LINE_END, GridBagConstraints.LINE_START, 18);
+        addLabelAndComponent("Taxable Income:", taxableIncomeField, gbc, roundedPanel, GridBagConstraints.LINE_END, GridBagConstraints.LINE_START, 18);
+        addLabelAndComponent("Age:", ageField, gbc, roundedPanel, GridBagConstraints.LINE_END, GridBagConstraints.LINE_START, 18);
+    
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         roundedPanel.add(calcButton, gbc);
-
+    
         gbc.gridx = 0;
         gbc.gridy = 5;
         gbc.gridwidth = 4;
         roundedPanel.add(resultLabel, gbc);
-
+    
         return roundedPanel;
     }
-
-    private void addLabelAndComponent(String labelText, JComponent component, GridBagConstraints gbc, JPanel panel, int labelAnchor, int componentAnchor) {
+    
+    private void addLabelAndComponent(String labelText, JComponent component, GridBagConstraints gbc, JPanel panel, int labelAnchor, int componentAnchor, int fontSize) {
         gbc.gridx = 0;
         gbc.gridy++;
         gbc.anchor = labelAnchor;
-        panel.add(new JLabel(labelText), gbc);
-
+    
+        // Set the font size for the label
+        JLabel label = new JLabel(labelText);
+        label.setFont(new Font("Arial", Font.PLAIN, fontSize));
+        panel.add(label, gbc);
+    
         gbc.gridx = 1;
         gbc.anchor = componentAnchor;
         panel.add(component, gbc);
     }
+    
 
     private void setFrameVisible() {
         frame.setVisible(true);
@@ -115,7 +124,7 @@ public class TaxCalculatorGUI {
             String taxYear = (String) taxYearBox.getSelectedItem();
             double taxableIncome = Double.parseDouble(taxableIncomeField.getText());
             int age = Integer.parseInt(ageField.getText());
-            if (age == 0){
+            if (age == 0 && age >104){
                 JOptionPane.showMessageDialog(frame, "Input correct age", "Information", JOptionPane.INFORMATION_MESSAGE);
             }
 
