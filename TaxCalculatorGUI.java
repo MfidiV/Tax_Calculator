@@ -8,6 +8,8 @@ public class TaxCalculatorGUI {
     private JTextField ageField;
     private JLabel resultLabel;
     private JButton calcButton;
+    private JLabel incomeLabel;
+
 
     public TaxCalculatorGUI() {
         frame = new JFrame("SARS TAX Calculator");
@@ -24,12 +26,15 @@ public class TaxCalculatorGUI {
         taxYearBox = new JComboBox<>(units);
         taxableIncomeField = new JTextField();
         ageField = new JTextField();
-        resultLabel = new JLabel("Result:");
+        incomeLabel = new JLabel("Net: ");
+        resultLabel = new JLabel("Result: ");
+
     
         // Increase the font size for labels
         Font largerFont = new Font("Arial", Font.PLAIN, 20);
         
         resultLabel.setFont(new Font("Arial", Font.BOLD, 18)); // Font for Result label
+        incomeLabel.setFont(new Font("Arial", Font.BOLD, 18)); // Font for Result label
     
         calcButton = new JButton("Calculate Tax");
         calcButton.addActionListener(e -> performCalculations());
@@ -95,6 +100,12 @@ public class TaxCalculatorGUI {
         gbc.gridy = 5;
         gbc.gridwidth = 4;
         roundedPanel.add(resultLabel, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 6;
+        gbc.gridwidth = 4;
+        roundedPanel.add(incomeLabel, gbc);
+
     
         return roundedPanel;
     }
@@ -129,12 +140,16 @@ public class TaxCalculatorGUI {
             }
 
             double result = calculateIncomeTax(taxYear, taxableIncome, age);
+            double net = taxableIncome - result;
 
             if (result == 0){
                 JOptionPane.showMessageDialog(frame, "No tax payable R"+ result, "Output", JOptionPane.ERROR_MESSAGE);
             }
             String tax = String.format("%.2f", result);
             resultLabel.setText("Tax " + taxYear + ": R" + tax);
+
+            String netIncome = String.format("%.2f", net);
+            incomeLabel.setText("Net  " + taxYear + ": R" + netIncome);
             
 
         } catch (NumberFormatException e) {
