@@ -1,5 +1,5 @@
 # `Tax Calculator`
-``
+
 ## Overview
 This Java Swing application provides a graphical user interface for calculating income tax based on the selected tax year, taxable income, and age.
 
